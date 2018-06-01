@@ -1,6 +1,6 @@
 {
-  "name": "remove-svg-properties",
-  "version": "0.3.3",
+  "name": "@beary/remove-svg-properties",
+  "version": "0.3.5",
   "description": "Remove attributes and styles from SVGs",
   "main": "index.js",
   "directories": {
@@ -21,9 +21,6 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
