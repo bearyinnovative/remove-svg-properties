@@ -60,8 +60,20 @@ function removeInline (cssProperty, element) {
 }
 
 function removeAttribute (attribute, element) {
-    if (element.attr(attribute)) counters.attributes += 1; //count
-    element.removeAttr(attribute);
+    let removedAttribute = attribute;
+    if (_.isFunction(attribute)) {
+      removedAttribute = attribute(element);
+    }
+
+    if (!removedAttribute) return;
+
+    if (_.isArray(removedAttribute)) {
+      removedAttribute.forEach(attr => removeAttribute(attr, element));
+      return;
+    }
+
+    if (element.attr(removedAttribute)) counters.attributes += 1; //count
+    element.removeAttr(removedAttribute);
 }
 
 function attrSelector (propertiesArray) {
@@ -103,7 +115,7 @@ function remove (file, enc, cb) {
         });
     };
 
-    if (opt.attributes) $(attrSelector(opt.properties)).each(function (i, element) {
+    if (opt.attributes) $('*').each(function (i, element) {
         removeProperties($(element));
     });
 
